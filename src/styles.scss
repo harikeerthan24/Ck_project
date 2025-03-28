@@ -1,154 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Text:wght@300;400;500;600&display=swap');
-
-:root {
-  --apple-blue: #007aff;
-  --apple-green: #34c759;
-  --apple-red: #ff3b30;
-  --apple-gray: #8e8e93;
-  --apple-light-gray: #f2f2f7;
-  --apple-bg: #ffffff;
-  --apple-text: #1d1d1f;
-  --border-radius: 10px;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --font-sf-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  --font-sf-text: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: var(--font-sf-text);
-  color: var(--apple-text);
-  line-height: 1.5;
-  background-color: #f5f5f7;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sf-display);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-}
-
-input, select, textarea, button {
-  font-family: var(--font-sf-text);
-}
-
-/* Common input style */
-input, select, textarea {
-  border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 12px 15px;
-  font-size: 16px;
-  transition: all 0.2s ease;
-  background-color: var(--apple-bg);
-}
-
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: var(--apple-blue);
-  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
-}
-
-/* Button styling */
 button {
-  background-color: var(--apple-blue);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 20px;
-  font-size: 16px;
-  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-button:hover {
-  background-color: #0066cc;
-  transform: translateY(-1px);
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-button:active {
-  background-color: #0055b3;
-  transform: translateY(0);
-}
-
-/* Secondary button */
-button.secondary {
-  background-color: transparent;
-  color: var(--apple-blue);
-  border: 1px solid var(--apple-blue);
-}
-
-button.secondary:hover {
-  background-color: rgba(0, 122, 255, 0.05);
-}
-
-/* Animation for smooth transitions */
-.animate {
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1.0);
-}
-
-/* Container with Apple-like styling */
-.ios-container {
-  background-color: white;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-}
-
-/* Custom form controls */
-.ios-toggle {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 28px;
-}
-
-.ios-toggle input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.ios-toggle-slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 34px;
-}
-
-.ios-toggle-slider:before {
-  position: absolute;
-  content: "";
-  height: 24px;
-  width: 24px;
-  left: 2px;
-  bottom: 2px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .ios-toggle-slider {
-  background-color: var(--apple-blue);
-}
-
-input:checked + .ios-toggle-slider:before {
-  transform: translateX(22px);
+input, select, textarea {
+  font-family: inherit;
 }
 
 /* Utility classes */
