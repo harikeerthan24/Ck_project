@@ -1,0 +1,54 @@
+<div class="survey-list-container">
+  <h2>All Survey Responses</h2>
+  
+  <div *ngIf="surveys.length === 0" class="no-surveys">
+    <p>No surveys have been submitted yet.</p>
+    <a routerLink="/student-survey" class="btn btn-primary">Fill a Survey</a>
+  </div>
+  
+  <div *ngIf="surveys.length > 0" class="surveys-table-container">
+    <table class="surveys-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Subjects</th>
+          <th>Campus Preferences</th>
+          <th>Interest Source</th>
+          <th>Recommendation</th>
+          <th>Enrollment</th>
+          <th>Survey Date</th>
+          <th>Feedback</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let survey of surveys">
+          <td>{{ survey.id }}</td>
+          <td>{{ survey.firstName }} {{ survey.lastName }}</td>
+          <td>{{ survey.email }}</td>
+          <td>{{ survey.telephoneNumber }}</td>
+          <td>{{ survey.streetAddress }}, {{ survey.city }}, {{ survey.state }} {{ survey.zipCode }}</td>
+          <td>{{ survey.age }}</td>
+          <td>{{ survey.gender }}</td>
+          <td>{{ getSubjectsString(survey.subjects) }}</td>
+          <td>{{ getCampusPreferencesString(survey.campusPreferences) }}</td>
+          <td>{{ getInterestSourceText(survey) }}</td>
+          <td>{{ getRecommendationText(survey.recommendationLikelihood) }}</td>
+          <td>{{ survey.enrollmentType }}</td>
+          <td>{{ survey.surveyDate }}</td>
+          <td>{{ survey.feedback || 'No feedback provided' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="button-container">
+    <a routerLink="/welcome" class="btn btn-secondary">Back to Home</a>
+    <a routerLink="/student-survey" class="btn btn-primary">Fill a New Survey</a>
+  </div>
+</div>
