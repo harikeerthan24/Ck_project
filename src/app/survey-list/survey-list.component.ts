@@ -31,12 +31,12 @@ export class SurveyListComponent implements OnInit {
     return new Date(date).toLocaleString();
   }
 
-  getSubjectsString(subjects: string[]): string {
-    if (!subjects || subjects.length === 0) {
-      return 'None selected';
-    }
-    return subjects.join(', ');
-  }
+  // getSubjectsString(subjects: string[]): string {
+  //   if (!subjects || subjects.length === 0) {
+  //     return 'None selected';
+  //   }
+  //   return subjects.join(', ');
+  // }
   
   getCampusPreferencesString(campusPreferences: string[]): string {
     if (!campusPreferences || campusPreferences.length === 0) {

@@ -17,11 +17,9 @@
           <th>Address</th>
           <th>Age</th>
           <th>Gender</th>
-          <th>Subjects</th>
           <th>Campus Preferences</th>
           <th>Interest Source</th>
           <th>Recommendation</th>
-          <th>Enrollment</th>
           <th>Survey Date</th>
           <th>Feedback</th>
         </tr>
@@ -35,11 +33,9 @@
           <td>{{ survey.streetAddress }}, {{ survey.city }}, {{ survey.state }} {{ survey.zipCode }}</td>
           <td>{{ survey.age }}</td>
           <td>{{ survey.gender }}</td>
-          <td>{{ getSubjectsString(survey.subjects) }}</td>
           <td>{{ getCampusPreferencesString(survey.campusPreferences) }}</td>
           <td>{{ getInterestSourceText(survey) }}</td>
           <td>{{ getRecommendationText(survey.recommendationLikelihood) }}</td>
-          <td>{{ survey.enrollmentType }}</td>
           <td>{{ survey.surveyDate }}</td>
           <td>{{ survey.feedback || 'No feedback provided' }}</td>
         </tr>
