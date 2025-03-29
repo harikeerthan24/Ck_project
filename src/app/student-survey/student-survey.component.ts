@@ -1,14 +1,26 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { Survey } from '../models/survey';
 import { SurveyService } from '../services/survey.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-student-survey',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    RouterLink, 
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
+  ],
   templateUrl: './student-survey.component.html',
   styleUrl: './student-survey.component.scss'
 })
@@ -85,12 +97,12 @@ export class StudentSurveyComponent {
   };
 
   // Validation patterns
-  emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  emailPattern = /^(?!.*\.\.)[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   phonePattern = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
   zipCodePattern = /^\d{5}(-\d{4})?$/;
   datePattern = /^\d{4}-\d{2}-\d{2}$/;
 
-  constructor(private surveyService: SurveyService) {}
+  constructor(private surveyService: SurveyService, private router: Router) {}
 
   // Get current date in YYYY-MM-DD format
   getCurrentDate(): string {
@@ -166,7 +178,7 @@ export class StudentSurveyComponent {
   isSurveyDateValid(): boolean {
     return this.datePattern.test(this.survey.surveyDate);
   }
-
+  
   // Mark field as touched
   markAsTouched(field: keyof typeof this.touchedFields): void {
     this.touchedFields[field] = true;
@@ -280,9 +292,9 @@ export class StudentSurveyComponent {
       this.isGenderValid() && 
       this.isInterestSourceValid() &&
       this.isRecommendationLikelihoodValid() &&
-      this.areSubjectsValid() && 
+      // this.areSubjectsValid() && 
       this.areCampusPreferencesValid() &&
-      this.isEnrollmentTypeValid() &&
+      // this.isEnrollmentTypeValid() &&
       this.isSurveyDateValid()
     );
   }
@@ -305,7 +317,7 @@ export class StudentSurveyComponent {
     if (this.formValid) {
       // Ensure age is a number before submission
       this.survey.age = Number(this.ageInputValue);
-      this.survey.subjects = this.getSelectedSubjects();
+      // this.survey.subjects = this.getSelectedSubjects();
       this.survey.campusPreferences = this.getSelectedCampusPreferences();
       
       // Mark otherInterestSource as touched if interest source is 'other'
@@ -353,5 +365,60 @@ export class StudentSurveyComponent {
     Object.keys(this.touchedFields).forEach(field => {
       this.touchedFields[field as keyof typeof this.touchedFields] = false;
     });
+  }
+
+  navigateToWelcome(): void {
+    // Optional: add confirmation dialog if form has data
+    if (this.formHasData()) {
+      if (confirm('Are you sure you want to cancel? All entered data will be lost.')) {
+        this.router.navigate(['/welcome']);
+      }
+    } else {
+      this.router.navigate(['/welcome']);
+    }
+  }
+
+  formHasData(): boolean {
+    // Logic to check if user has entered any data
+    return !!this.survey.firstName || 
+           !!this.survey.lastName || 
+           !!this.survey.email ||
+           !!this.survey.streetAddress ||
+          //  this.getSelectedSubjects().length > 0 ||
+           this.getSelectedCampusPreferences().length > 0;
+  }
+
+  confirmCancel(): void {
+    // Show confirmation dialog
+    if (confirm('Are you sure you want to cancel? All entered data will be lost.')) {
+      this.router.navigate(['/welcome']);
+    }
+  }
+
+  confirmClear(): void {
+    // Show confirmation dialog
+    if (confirm('Are you sure you want to clear the form? All entered data will be lost.')) {
+      this.resetForm(); // Call your existing resetForm method
+    }
+  }
+
+  // Add this to your StudentSurveyComponent class
+  ngOnInit() {
+    // Set up the beforeunload handler
+    window.addEventListener('beforeunload', this.beforeUnloadHandler.bind(this));
+  }
+
+  ngOnDestroy() {
+    // Clean up the event listener when component is destroyed
+    window.removeEventListener('beforeunload', this.beforeUnloadHandler.bind(this));
+  }
+
+  // Check if form has unsaved data
+  private beforeUnloadHandler(event: BeforeUnloadEvent): void {
+    if (this.formHasData() && !this.submitted) {
+      // This message may not be displayed in many modern browsers
+      // Instead, a generic message from the browser might be shown
+      event.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
+    }
   }
 }

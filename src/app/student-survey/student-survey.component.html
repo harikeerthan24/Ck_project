@@ -237,7 +237,7 @@
     </div>
     
     <!-- Academic Information -->
-    <div class="form-section">
+    <!-- <div class="form-section">
       <h3>Academic Information</h3>
       
       <div class="form-group">
@@ -272,7 +272,7 @@
           Please select an enrollment type
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Campus Preferences -->
     <div class="form-section">
@@ -413,8 +413,8 @@
     
     <div class="button-group">
       <button type="submit" class="btn btn-primary">Submit Survey</button>
-      <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset Form</button>
-      <a routerLink="/welcome" class="btn btn-tertiary">Back to Welcome</a>
+      <button type="button" class="btn btn-secondary" (click)="confirmCancel()">Cancel</button>
+      <button type="button" class="btn btn-tertiary" (click)="confirmClear()">Clear Form</button>
     </div>
   </form>
 </div>
