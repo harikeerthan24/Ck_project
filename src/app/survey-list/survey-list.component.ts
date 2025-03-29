@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { Survey } from '../models/survey';
 import { SurveyService } from '../services/survey.service';
 
@@ -13,8 +13,15 @@ import { SurveyService } from '../services/survey.service';
 })
 export class SurveyListComponent implements OnInit {
   surveys: Survey[] = [];
+  showDeleteModal = false;
+  showViewModal = false;
+  selectedSurveyId: number | null = null;
+  selectedSurvey: Survey | undefined;
 
-  constructor(private surveyService: SurveyService) {}
+  constructor(
+    private surveyService: SurveyService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadSurveys();
@@ -24,6 +31,45 @@ export class SurveyListComponent implements OnInit {
     this.surveyService.getAllSurveys().subscribe(data => {
       this.surveys = data;
     });
+  }
+
+  viewSurvey(id: number): void {
+    if (id) {
+      this.selectedSurvey = this.surveyService.getSurveyById(id);
+      this.showViewModal = true;
+    }
+  }
+
+  editSurvey(id: number): void {
+    if (id) {
+      // Navigate to the survey form with the ID as a route parameter
+      this.router.navigate(['/student-survey', { id }]);
+    }
+  }
+
+  confirmDelete(id: number): void {
+    if (id) {
+      this.selectedSurveyId = id;
+      this.showDeleteModal = true;
+    }
+  }
+
+  deleteSurvey(): void {
+    if (this.selectedSurveyId) {
+      this.surveyService.deleteSurvey(this.selectedSurveyId);
+      this.showDeleteModal = false;
+      this.selectedSurveyId = null;
+    }
+  }
+
+  cancelDelete(): void {
+    this.showDeleteModal = false;
+    this.selectedSurveyId = null;
+  }
+
+  closeViewModal(): void {
+    this.showViewModal = false;
+    this.selectedSurvey = undefined;
   }
 
   getFormattedDate(date: Date | undefined): string {

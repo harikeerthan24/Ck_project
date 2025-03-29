@@ -1,12 +1,12 @@
 <div class="survey-container">
-  <h2>Student Survey Form</h2>
+  <h2>{{ isEditMode ? 'Edit Survey' : 'Student Survey Form' }}</h2>
   
   <div *ngIf="submitted" class="success-message">
     <div class="success-icon">✓</div>
-    <h3>Thank you for submitting the survey!</h3>
-    <p>Your response has been recorded successfully.</p>
+    <h3>{{ isEditMode ? 'Survey updated successfully!' : 'Thank you for submitting the survey!' }}</h3>
+    <p>{{ isEditMode ? 'Your changes have been saved.' : 'Your response has been recorded successfully.' }}</p>
     <div class="button-group">
-      <button class="btn btn-primary" (click)="resetForm()">Fill Another Survey</button>
+      <button class="btn btn-primary" (click)="resetForm()">{{ isEditMode ? 'Edit Another Survey' : 'Fill Another Survey' }}</button>
       <a routerLink="/survey-list" class="btn btn-secondary">View All Surveys</a>
     </div>
   </div>
@@ -236,8 +236,8 @@
       </div>
     </div>
     
-    <!-- Academic Information -->
-    <!-- <div class="form-section">
+    <!-- Academic Information
+  <div class="form-section">
       <h3>Academic Information</h3>
       
       <div class="form-group">
