@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "StudentSurveyBackendApplication",
+            "request": "launch",
+            "mainClass": "com.student.StudentSurvey_Backend.StudentSurveyBackendApplication"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-StudentSurveyBackendApplication<StudentSurvey_Backend>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.student.StudentSurvey_Backend.StudentSurveyBackendApplication",
+            "projectName": "StudentSurvey_Backend",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
