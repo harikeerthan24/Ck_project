@@ -1,0 +1,11 @@
+Working on the full stack form website with CRUD operations using the below stack 
+
+- Angular Js -> frontend
+- Sprint Boot -> backend
+- MySQL (docker container) -> Database
+
+Code structure
+- code should be simple and clean
+- Clean Module structure 
+- Add clear comments everytime 
+
