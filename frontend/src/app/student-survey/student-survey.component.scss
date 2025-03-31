@@ -1,0 +1,375 @@
+/* Main container for the survey form */
+.survey-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  border-radius: 8px;
+}
+
+/* Spinner animation */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Main heading styles */
+h2 {
+  color: #343a40;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Individual form sections/cards */
+.form-section {
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* Section headings */
+  h3 {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: #495057;
+  }
+}
+
+/* Flexbox row for form fields */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -0.75rem;
+  margin-left: -0.75rem;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  
+  /* Form groups within rows */
+  .form-group {
+    flex: 1 0 0%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    
+    /* Responsive layout for mobile */
+    @media (max-width: 768px) {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+/* Individual form field groups */
+.form-group {
+  margin-bottom: 2rem;
+
+  /* Field labels */
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #495057;
+  }
+
+  /* Required field indicator */
+  .required {
+    color: #dc3545;
+    margin-left: 0.25rem;
+  }
+}
+
+/* Form input styling */
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  /* Focus state */
+  &:focus {
+    border-color: #007bff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  /* Invalid state with error icon */
+  &.is-invalid {
+    border-color: #dc3545;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+  }
+}
+
+/* Remove default number input spinners */
+.no-spinner {
+  -moz-appearance: textfield;
+}
+
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Radio and checkbox groups styling */
+.radio-group, .checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  /* Individual option items */
+  .checkbox-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    
+    /* For horizontal layout on wider screens */
+    @media (min-width: 576px) {
+      width: calc(33.333% - 1rem);
+      float: left;
+      margin-right: 1rem;
+    }
+    
+    @media (max-width: 575px) {
+      display: block;
+      width: 100%;
+    }
+    
+    input[type="checkbox"] {
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+  }
+
+  /* Individual option labels */
+  label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
+    margin-bottom: 0;
+
+    input {
+      margin-right: 0.5rem;
+    }
+  }
+  
+  /* Invalid state styling */
+  &.is-invalid-group {
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+    padding: 0.5rem;
+    background-color: rgba(220, 53, 69, 0.05);
+  }
+  
+  /* Clear floats */
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+/* Field error message styling */
+.field-error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Form-level error message */
+.error-message {
+  color: #dc3545;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  animation: fadeIn 0.5s ease-in-out;
+  
+  ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    padding-left: 1.5rem;
+  }
+}
+
+/* Success message styling */
+.success-message {
+  text-align: center;
+  padding: 2rem;
+  background-color: #d4edda;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.5s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  /* Success icon */
+  .success-icon {
+    font-size: 3rem;
+    color: #28a745;
+    margin-bottom: 1rem;
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    background-color: rgba(40, 167, 69, 0.1);
+    margin: 0 auto 1rem;
+  }
+
+  /* Success message heading */
+  h3 {
+    font-size: 1.5rem;
+    color: #155724;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Success message text */
+  p {
+    font-size: 1.1rem;
+    color: #155724;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Button group container */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Base button styles */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Primary button */
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  
+  &:hover {
+    background-color: #0069d9;
+  }
+}
+
+/* Secondary button */
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  
+  &:hover {
+    background-color: #5a6268;
+  }
+}
+
+/* Tertiary button */
+.btn-tertiary {
+  background-color: #f8f9fa;
+  color: #343a40;
+  border: 1px solid #ced4da;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background-color: #e2e6ea;
+  }
+}
+
+/* Dropdown select styling */
+select.form-control {
+  font-size: 1.2rem;
+  padding: 10px;
+  height: auto;
+  
+  option {
+    font-size: 1.2rem;
+    padding: 10px 15px;
+    min-height: 40px;
+    line-height: 1.6;
+  }
+}
+
+/* Dropdown option styling */
+select.form-control option {
+  background-color: white;
+  color: #333;
+}
+
+/* Firefox-specific dropdown styling */
+@-moz-document url-prefix() {
+  select.form-control {
+    padding: 12px;
+    
+    option {
+      font-weight: normal;
+      min-height: 35px;
+    }
+  }
+}
+
+/* Date input styling */
+input[type="date"].form-control {
+  padding: 0.6rem 0.75rem;
+}
+
+/* Utility classes */
+.mt-2 {
+  margin-top: 1rem !important;
+}

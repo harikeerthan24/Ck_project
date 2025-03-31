@@ -1,0 +1,83 @@
+<div class="survey-list-container">
+  <h2>All Survey Responses</h2>
+  
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+  
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  
+  <div *ngIf="surveys.length === 0 && !isLoading" class="no-surveys">
+    <p>No surveys have been submitted yet.</p>
+    <a routerLink="/student-survey" class="btn btn-primary">Fill a Survey</a>
+  </div>
+  
+  <div *ngIf="surveys.length > 0" class="surveys-table-container">
+    <table class="surveys-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Campus Preferences</th>
+          <th>Interest Source</th>
+          <th>Recommendation</th>
+          <th>Survey Date</th>
+          <th>Feedback</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let survey of surveys">
+          <td>{{ survey.id }}</td>
+          <td>{{ survey.firstName }} {{ survey.lastName }}</td>
+          <td>{{ survey.email }}</td>
+          <td>{{ survey.telephoneNumber }}</td>
+          <td>{{ survey.streetAddress }}, {{ survey.city }}, {{ survey.state }} {{ survey.zipCode }}</td>
+          <td>{{ survey.age }}</td>
+          <td>{{ survey.gender }}</td>
+          <td>{{ getCampusPreferencesString(survey.campusPreferences) }}</td>
+          <td>{{ getInterestSourceText(survey) }}</td>
+          <td>{{ getRecommendationText(survey.recommendationLikelihood) }}</td>
+          <td>{{ survey.surveyDate }}</td>
+          <td>{{ survey.feedback || 'No feedback provided' }}</td>
+          <td class="action-buttons">
+            <button class="btn btn-edit" (click)="editSurvey(survey.id)">Edit</button>
+            <button class="btn btn-delete" (click)="confirmDelete(survey)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Delete Confirmation Modal -->
+  <div class="modal" *ngIf="showDeleteModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Confirm Delete</h3>
+        <button class="close-button" (click)="cancelDelete()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete the survey for {{ surveyToDelete?.firstName }} {{ surveyToDelete?.lastName }}?</p>
+        <p class="warning">This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="cancelDelete()">Cancel</button>
+        <button class="btn btn-delete" (click)="deleteSurvey()">Delete</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="button-container">
+    <a routerLink="/welcome" class="btn btn-secondary">Back to Home</a>
+    <a routerLink="/student-survey" class="btn btn-primary">Fill a New Survey</a>
+  </div>
+</div>

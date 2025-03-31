@@ -1,0 +1,392 @@
+<div class="survey-container">
+  <h2>{{ isEditing ? 'Edit Survey' : 'Student Survey Form' }}</h2>
+  
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+  
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  
+  <div *ngIf="submitted" class="success-message">
+    <div class="success-icon">✓</div>
+    <h3>{{ isEditing ? 'Survey updated successfully!' : 'Thank you for submitting the survey!' }}</h3>
+    <p>{{ isEditing ? 'Your changes have been saved.' : 'Your response has been recorded successfully.' }}</p>
+    <div class="button-group">
+      <button class="btn btn-primary" (click)="resetForm()">{{ isEditing ? 'Return to List' : 'Fill Another Survey' }}</button>
+      <a routerLink="/survey-list" class="btn btn-secondary">View All Surveys</a>
+    </div>
+  </div>
+  
+  <form *ngIf="!submitted && !isLoading" (ngSubmit)="onSubmit()" novalidate>
+    <!-- Personal Information -->
+    <div class="form-section">
+      <h3>Personal Information</h3>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name<span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="firstName" 
+            name="firstName"
+            [(ngModel)]="survey.firstName" 
+            required
+            class="form-control"
+            [ngClass]="{'is-invalid': shouldShowError('firstName')}"
+            (blur)="markAsTouched('firstName')"
+            placeholder="Enter your first name">
+          <div *ngIf="shouldShowError('firstName')" class="error-message">
+            Please enter your first name
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="lastName">Last Name<span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="lastName" 
+            name="lastName"
+            [(ngModel)]="survey.lastName" 
+            required
+            class="form-control"
+            [ngClass]="{'is-invalid': shouldShowError('lastName')}"
+            (blur)="markAsTouched('lastName')"
+            placeholder="Enter your last name">
+          <div *ngIf="shouldShowError('lastName')" class="error-message">
+            Please enter your last name
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="streetAddress">Street Address<span class="required">*</span></label>
+        <input 
+          type="text" 
+          id="streetAddress" 
+          name="streetAddress"
+          [(ngModel)]="survey.streetAddress" 
+          required
+          class="form-control"
+          [ngClass]="{'is-invalid': shouldShowError('streetAddress')}"
+          (blur)="markAsTouched('streetAddress')"
+          placeholder="Enter your street address">
+        <div *ngIf="shouldShowError('streetAddress')" class="error-message">
+          Please enter your street address
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city">City<span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="city" 
+            name="city"
+            [(ngModel)]="survey.city" 
+            required
+            class="form-control"
+            [ngClass]="{'is-invalid': shouldShowError('city')}"
+            (blur)="markAsTouched('city')"
+            placeholder="Enter your city">
+          <div *ngIf="shouldShowError('city')" class="error-message">
+            Please enter your city
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="state">State<span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="state" 
+            name="state"
+            [(ngModel)]="survey.state" 
+            required
+            class="form-control"
+            [ngClass]="{'is-invalid': shouldShowError('state')}"
+            (blur)="markAsTouched('state')"
+            placeholder="Enter your state">
+          <div *ngIf="shouldShowError('state')" class="error-message">
+            Please enter your state
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="zipCode">ZIP Code<span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="zipCode" 
+            name="zipCode"
+            [(ngModel)]="survey.zipCode" 
+            required
+            class="form-control"
+            [ngClass]="{'is-invalid': shouldShowError('zipCode')}"
+            (input)="formatZipCode($event)"
+            (blur)="markAsTouched('zipCode')"
+            placeholder="Enter your ZIP code (e.g., 12345)">
+          <div *ngIf="shouldShowError('zipCode')" class="error-message">
+            Please enter a valid ZIP code (e.g., 12345 or 12345-6789)
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="telephoneNumber">Telephone Number<span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="telephoneNumber" 
+            name="telephoneNumber"
+            [(ngModel)]="survey.telephoneNumber" 
+            required
+            class="form-control"
+            [ngClass]="{'is-invalid': shouldShowError('telephoneNumber')}"
+            (input)="formatPhoneNumber($event)"
+            (blur)="markAsTouched('telephoneNumber')"
+            placeholder="Enter your phone number (e.g., (123) 456-7890)">
+          <div *ngIf="shouldShowError('telephoneNumber')" class="error-message">
+            Please enter a valid phone number (e.g., (123) 456-7890)
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address<span class="required">*</span></label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            [(ngModel)]="survey.email" 
+            required
+            class="form-control"
+            [ngClass]="{'is-invalid': shouldShowError('email')}"
+            (blur)="markAsTouched('email')"
+            placeholder="Enter your email address">
+          <div *ngIf="shouldShowError('email')" class="error-message">
+            Please enter a valid email address
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="age">Age<span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="age" 
+            name="age"
+            [(ngModel)]="ageInputValue" 
+            required
+            class="form-control"
+            [ngClass]="{'is-invalid': shouldShowError('age')}"
+            (input)="handleAgeInput($event)"
+            (blur)="markAsTouched('age')"
+            placeholder="Enter your age">
+          <div *ngIf="shouldShowError('age')" class="error-message">
+            Age must be between 12 and 25
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="surveyDate">Date of Survey<span class="required">*</span></label>
+          <input 
+            type="date" 
+            id="surveyDate" 
+            name="surveyDate"
+            [(ngModel)]="survey.surveyDate" 
+            required
+            class="form-control"
+            [ngClass]="{'is-invalid': shouldShowError('surveyDate')}"
+            (blur)="markAsTouched('surveyDate')">
+          <div *ngIf="shouldShowError('surveyDate')" class="error-message">
+            Please enter a valid date
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>Gender<span class="required">*</span></label>
+        <div class="radio-group" [ngClass]="{'is-invalid-group': shouldShowError('gender')}">
+          <label>
+            <input 
+              type="radio" 
+              name="gender" 
+              value="MALE"
+              [(ngModel)]="survey.gender" 
+              required
+              (change)="markAsTouched('gender')">
+            Male
+          </label>
+          <label>
+            <input 
+              type="radio" 
+              name="gender" 
+              value="FEMALE"
+              [(ngModel)]="survey.gender" 
+              required
+              (change)="markAsTouched('gender')">
+            Female
+          </label>
+          <label>
+            <input 
+              type="radio" 
+              name="gender" 
+              value="OTHER"
+              [(ngModel)]="survey.gender" 
+              required
+              (change)="markAsTouched('gender')">
+            Other
+          </label>
+        </div>
+        <div *ngIf="shouldShowError('gender')" class="error-message">
+          Please select your gender
+        </div>
+      </div>
+    </div>
+
+    <!-- Campus Preferences -->
+    <div class="form-section">
+      <h3>Campus Preferences</h3>
+      <div class="form-group">
+        <label>What did you like most about the campus? (select at least one):</label>
+        <div class="checkbox-group" (click)="markAsTouched('campusPreferences')">
+          <div class="checkbox-item">
+            <input type="checkbox" [(ngModel)]="campusPreferences[0].selected" id="StudentsPref" name="StudentsPref">
+            <label for="StudentsPref">Students</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" [(ngModel)]="campusPreferences[1].selected" id="LocationPref" name="LocationPref">
+            <label for="LocationPref">Location</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" [(ngModel)]="campusPreferences[2].selected" id="CampusPref" name="CampusPref">
+            <label for="CampusPref">Campus</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" [(ngModel)]="campusPreferences[3].selected" id="AtmospherePref" name="AtmospherePref">
+            <label for="AtmospherePref">Atmosphere</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" [(ngModel)]="campusPreferences[4].selected" id="DormRoomsPref" name="DormRoomsPref">
+            <label for="DormRoomsPref">Dorm rooms</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" [(ngModel)]="campusPreferences[5].selected" id="SportsPref" name="SportsPref">
+            <label for="SportsPref">Sports</label>
+          </div>
+        </div>
+        <div *ngIf="shouldShowError('campusPreferences')" class="error-message">
+          Please select at least one preference
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>How did you become interested in our university?<span class="required">*</span></label>
+        <div class="radio-group" [ngClass]="{'is-invalid-group': shouldShowError('interestSource')}">
+          <label>
+            <input 
+              type="radio" 
+              name="interestSource" 
+              value="FRIENDS"
+              [(ngModel)]="survey.interestSource" 
+              required
+              (change)="markAsTouched('interestSource')">
+            Friends
+          </label>
+          <label>
+            <input 
+              type="radio" 
+              name="interestSource" 
+              value="TELEVISION"
+              [(ngModel)]="survey.interestSource" 
+              required
+              (change)="markAsTouched('interestSource')">
+            Television
+          </label>
+          <label>
+            <input 
+              type="radio" 
+              name="interestSource" 
+              value="INTERNET"
+              [(ngModel)]="survey.interestSource" 
+              required
+              (change)="markAsTouched('interestSource')">
+            Internet
+          </label>
+          <label>
+            <input 
+              type="radio" 
+              name="interestSource" 
+              value="OTHER"
+              [(ngModel)]="survey.interestSource" 
+              required
+              (change)="markAsTouched('interestSource')">
+            Other
+          </label>
+        </div>
+        <div *ngIf="survey.interestSource === 'OTHER'" class="form-group mt-2">
+          <label for="otherInterestSource">Please specify:<span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="otherInterestSource"
+            name="otherInterestSource"
+            [(ngModel)]="survey.otherInterestSource"
+            required
+            class="form-control"
+            [ngClass]="{'is-invalid': shouldShowError('otherInterestSource')}"
+            (blur)="markAsTouched('otherInterestSource')"
+            placeholder="Please specify how you became interested">
+          <div *ngIf="shouldShowError('otherInterestSource')" class="error-message">
+            Please specify how you became interested
+          </div>
+        </div>
+        <div *ngIf="shouldShowError('interestSource') && survey.interestSource !== 'OTHER'" class="error-message">
+          Please select how you became interested in our university
+        </div>
+      </div>
+    </div>
+    
+    <!-- Feedback -->
+    <div class="form-section">
+      <h3>Feedback</h3>
+      
+      <div class="form-group">
+        <label for="recommendationLikelihood">How likely are you to recommend this school to other prospective students?<span class="required">*</span></label>
+        <select 
+          id="recommendationLikelihood" 
+          name="recommendationLikelihood"
+          [(ngModel)]="survey.recommendationLikelihood" 
+          required
+          class="form-control"
+          [ngClass]="{'is-invalid': shouldShowError('recommendationLikelihood')}"
+          (blur)="markAsTouched('recommendationLikelihood')"
+          (change)="markAsTouched('recommendationLikelihood')">
+          <option value="" disabled selected>Select an option</option>
+          <option *ngFor="let option of recommendationOptions" [value]="option.value">{{option.label}}</option>
+        </select>
+        <div *ngIf="shouldShowError('recommendationLikelihood')" class="error-message">
+          Please select how likely you are to recommend this school
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="feedback">Comments or Suggestions</label>
+        <textarea 
+          id="feedback" 
+          name="feedback"
+          [(ngModel)]="survey.feedback" 
+          rows="4"
+          class="form-control"
+          placeholder="Enter your comments or suggestions"></textarea>
+      </div>
+    </div>
+    
+    <div class="button-group">
+      <button type="submit" class="btn btn-primary">{{ isEditing ? 'Update Survey' : 'Submit Survey' }}</button>
+      <button type="button" class="btn btn-secondary" (click)="resetForm()">{{ isEditing ? 'Cancel' : 'Reset Form' }}</button>
+      <a routerLink="/welcome" class="btn btn-tertiary">Back to Welcome</a>
+    </div>
+  </form>
+</div>
