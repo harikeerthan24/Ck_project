@@ -1,3 +1,11 @@
+
+/**
+ * @author Rakul CK , Bhavya
+ * @file ValidationErrorResponse.java
+ * @description Custom error response class for validation errors.
+ * Handles validation error details and formatting for API responses.
+ */
+
 package com.student.StudentSurvey_Backend.exception;
 
 import lombok.Getter;

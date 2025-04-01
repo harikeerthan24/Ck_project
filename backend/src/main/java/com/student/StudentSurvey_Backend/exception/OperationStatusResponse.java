@@ -1,3 +1,11 @@
+
+/**
+ * @author Rakul CK , Bhavya
+ * @file OperationStatusResponse.java
+ * @description Response class for indicating the status of an operation.
+ * Handles the response format for API operations.
+ */
+
 package com.student.StudentSurvey_Backend.exception;
 
 import lombok.AllArgsConstructor;

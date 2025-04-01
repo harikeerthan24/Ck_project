@@ -1,5 +1,5 @@
 /**
- * @author Rakul CK
+ * @author Rakul CK , Bhavya
  * @file app.config.ts
  * @description Application configuration file that sets up Angular application providers,
  * including HTTP client and routing configuration.

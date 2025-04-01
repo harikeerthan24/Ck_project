@@ -1,3 +1,9 @@
+/**
+ * @author Rakul CK , Bhavya
+ * @fileoverview Unit tests for StudentSurveyComponent.
+ */
+
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StudentSurveyComponent } from './student-survey.component';

@@ -1,3 +1,11 @@
+
+/**
+ * @author Rakul CK , Bhavya
+ * @file WebConfig.java
+ * @description Configuration for Spring Web MVC.
+ * Handles CORS configuration and date formatting for survey submissions.
+ */
+
 package com.student.StudentSurvey_Backend.config;
 
 import org.springframework.context.annotation.Configuration;

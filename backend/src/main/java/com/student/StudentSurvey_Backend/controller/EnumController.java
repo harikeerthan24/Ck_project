@@ -1,5 +1,5 @@
 /**
- * @author Rakul CK
+ * @author Rakul CK , Bhavya
  * @file EnumController.java
  * @description Controller for handling enumeration data endpoints.
  * Provides API endpoints for retrieving predefined options and constants used in the survey.

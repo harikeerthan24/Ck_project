@@ -1,3 +1,12 @@
+
+
+/**
+ * @author Rakul CK , Bhavya
+ * @file GlobalExceptionHandler.java
+ * @description Global exception handler for handling exceptions across the application.
+ * Provides centralized error handling and response formatting for all exceptions.
+ */
+
 package com.student.StudentSurvey_Backend.exception;
 
 import org.springframework.http.HttpStatus;

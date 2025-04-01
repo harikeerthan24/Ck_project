@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK , Bhavya
+ * @file CustomDateConverter.java
+ * @description Custom converter for LocalDate to String.
+ * Handles date formatting and parsing for survey submissions.
+ */
+
 package com.student.StudentSurvey_Backend.config;
 
 import org.springframework.core.convert.converter.Converter;

@@ -1,5 +1,5 @@
 /**
- * @author Rakul CK
+ * @author Rakul CK , Bhavya
  * @file StudentController.java
  * @description REST controller handling student survey endpoints.
  * Provides API endpoints for CRUD operations on student survey data.

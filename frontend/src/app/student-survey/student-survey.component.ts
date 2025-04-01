@@ -1,5 +1,5 @@
 /**
- * @author Rakul CK
+ * @author Rakul CK, Bhavya
  * @file student-survey.component.ts
  * @description Main component for the student survey form.
  * Handles form submission, validation, and data management for student survey entries.

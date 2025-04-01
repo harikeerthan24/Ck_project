@@ -1,3 +1,10 @@
+
+
+/**
+ * @author Rakul CK , Bhavya
+ * @fileoverview Unit tests for AppComponent.
+ */
+
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 

@@ -1,6 +1,11 @@
--- -- Initialize schema if needed
--- -- The actual tables will be created by Hibernate based on entity definitions
--- -- This file is now mainly for testing data
+-- author Rakul CK , Bhavya
+-- file data.sql
+-- description Data initialization for the student survey application.
+-- Handles the insertion of sample data for testing and development purposes.
+
+-- Initialize schema if needed
+-- The actual tables will be created by Hibernate based on entity definitions
+-- This file is now mainly for testing data
 
 -- -- Insert a few sample student surveys for testing
 -- INSERT INTO students (first_name, last_name, email, age, street_address, city, state, zip_code, telephone_number, gender, feedback, survey_date, interest_source, other_interest_source, recommendation_likelihood, created_at, updated_at, version) 

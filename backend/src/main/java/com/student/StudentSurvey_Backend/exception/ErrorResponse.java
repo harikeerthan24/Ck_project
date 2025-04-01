@@ -1,3 +1,11 @@
+
+/**
+ * @author Rakul CK , Bhavya
+ * @file ErrorResponse.java
+ * @description Custom error response class for API exceptions.
+ * Handles error details and formatting for API responses.
+ */
+
 package com.student.StudentSurvey_Backend.exception;
 
 import lombok.AllArgsConstructor;

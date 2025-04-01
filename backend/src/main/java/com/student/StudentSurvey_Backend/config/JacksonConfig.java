@@ -1,3 +1,12 @@
+
+
+/**
+ * @author Rakul CK , Bhavya
+ * @file JacksonConfig.java
+ * @description Configuration for Jackson JSON serialization and deserialization.
+ * Handles date formatting and parsing for survey submissions.
+ */
+
 package com.student.StudentSurvey_Backend.config;
 
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;

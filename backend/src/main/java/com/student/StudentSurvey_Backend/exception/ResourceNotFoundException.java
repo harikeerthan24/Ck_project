@@ -1,3 +1,12 @@
+
+
+/**
+ * @author Rakul CK , Bhavya
+ * @file ResourceNotFoundException.java
+ * @description Custom exception for handling resource not found errors.
+ * Extends RuntimeException to allow for custom error messages.
+ */
+
 package com.student.StudentSurvey_Backend.exception;
 
 import org.springframework.http.HttpStatus;
