@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file OperationStatusResponse.java
+ * @description Response model for operation status messages.
+ * Used to standardize API responses with success/failure status and messages.
+ */
+
 package com.student.StudentSurvey_Backend.model;
 
 import lombok.AllArgsConstructor;

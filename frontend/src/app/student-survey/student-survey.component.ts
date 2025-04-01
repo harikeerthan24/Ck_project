@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file student-survey.component.ts
+ * @description Main component for the student survey form.
+ * Handles form submission, validation, and data management for student survey entries.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

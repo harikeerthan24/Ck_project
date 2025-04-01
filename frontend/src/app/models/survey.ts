@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file survey.ts
+ * @description Interface defining the structure of a student survey.
+ * Contains all the fields and types for survey data in the frontend application.
+ */
+
 export interface Survey {
   id?: number;
   firstName: string;

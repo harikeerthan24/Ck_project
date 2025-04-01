@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file StudentController.java
+ * @description REST controller handling student survey endpoints.
+ * Provides API endpoints for CRUD operations on student survey data.
+ */
+
 package com.student.StudentSurvey_Backend.controller;
 
 import com.student.StudentSurvey_Backend.StudentService;

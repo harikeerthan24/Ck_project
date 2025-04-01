@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file StudentResponseDTO.java
+ * @description Response DTO for student survey submissions.
+ * Contains the response data structure for API endpoints handling student survey operations.
+ */
+
 package com.student.StudentSurvey_Backend.model;
 
 import com.student.StudentSurvey_Backend.model.Student.CampusFeature;

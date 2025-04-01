@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file EnumController.java
+ * @description Controller for handling enumeration data endpoints.
+ * Provides API endpoints for retrieving predefined options and constants used in the survey.
+ */
+
 package com.student.StudentSurvey_Backend.controller;
 
 import com.student.StudentSurvey_Backend.model.Student;

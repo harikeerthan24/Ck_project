@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file api.service.ts
+ * @description Service for handling HTTP communication with the backend API.
+ * Manages all API requests and responses for the student survey application.
+ */
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';

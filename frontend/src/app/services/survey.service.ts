@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file survey.service.ts
+ * @description Service for managing survey data and operations.
+ * Provides methods for handling survey-related business logic and data transformations.
+ */
+
 // import { Injectable } from '@angular/core';
 // import { Survey } from '../models/survey';
 // import { BehaviorSubject, Observable } from 'rxjs';

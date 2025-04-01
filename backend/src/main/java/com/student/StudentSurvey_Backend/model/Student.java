@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file Student.java
+ * @description Entity class representing a student survey submission.
+ * Contains all the fields and data structure for storing student survey information.
+ */
+
 package com.student.StudentSurvey_Backend.model;
 
 import jakarta.persistence.*;

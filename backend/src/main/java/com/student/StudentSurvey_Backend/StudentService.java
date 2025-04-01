@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file StudentService.java
+ * @description Service class that handles business logic for student survey operations.
+ * Manages CRUD operations and data processing for student survey submissions.
+ */
+
 // Business logic for Student Survey
 
 package com.student.StudentSurvey_Backend;

@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file survey-list.component.ts
+ * @description Component for displaying and managing the list of student surveys.
+ * Handles survey listing, pagination, and survey management operations.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';

@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file StudentDTO.java
+ * @description Data Transfer Object (DTO) for student survey data.
+ * Used for transferring student survey information between layers of the application.
+ */
+
 package com.student.StudentSurvey_Backend.model;
 
 import com.student.StudentSurvey_Backend.model.Student.CampusFeature;

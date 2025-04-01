@@ -1,3 +1,10 @@
+/**
+ * @author Rakul CK
+ * @file app.routes.ts
+ * @description Defines the application routing configuration, specifying the paths and components
+ * for different routes in the application.
+ */
+
 import { Routes } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { StudentSurveyComponent } from './student-survey/student-survey.component';
