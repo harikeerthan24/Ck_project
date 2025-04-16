@@ -1,11 +1,64 @@
-Working on the full stack form website with CRUD operations using the below stack 
+# .cursorrules - Angular to Vue Migration with Spring Boot Backend
 
-- Angular Js -> frontend
-- Sprint Boot -> backend
-- MySQL (docker container) -> Database
+# Project Stack
+- Frontend: Vue.js (converted from Angular)
+- Backend: Spring Boot (unchanged)
+- Database: MySQL (docker container)
 
-Code structure
-- code should be simple and clean
-- Clean Module structure 
-- Add clear comments everytime 
+# Migration Rules
+
+## Frontend Conversion
+- Replace all Angular components with Vue single-file components (.vue)
+- Convert Angular services to Vue composition API or Pinia stores
+- Transform Angular templates to Vue templates
+  - ng-if → v-if
+  - ng-for → v-for
+  - [(ngModel)] → v-model
+  - [property] → :property
+  - (event) → @event
+- Replace Angular HttpClient with Axios for API calls
+- Set up Vue Router to match existing Angular routes
+
+## Backend Integration
+- Maintain existing Spring Boot endpoints
+- Update CORS configuration in Spring Boot to allow Vue frontend
+- Keep consistent data transfer objects (DTOs)
+- Ensure authentication flows remain compatible
+
+## Code Structure
+- Organize by feature modules
+- Keep components small and focused (Single Responsibility)
+- Implement proper state management with Pinia
+- Use composition API for reusable logic
+
+## Best Practices
+- Follow Vue 3 style guide
+- Use TypeScript for type safety
+- Implement proper error handling
+- Create reusable components
+- Document API interactions
+- Add comprehensive test coverage
+
+## Build and Deployment
+- Configure Vite for development and production builds
+- Set up environment-specific configurations
+- Ensure efficient bundling for production
+
+## Component Naming Conventions
+- PascalCase for component names
+- kebab-case for custom element names
+- camelCase for component instances and methods
+
+## File Structure
+frontend/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── composables/
+│   ├── router/
+│   ├── stores/
+│   ├── views/
+│   ├── services/
+│   └── App.vue
+backend/ (unchanged Spring Boot structure)
 
